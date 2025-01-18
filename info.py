@@ -1,18 +1,18 @@
-# ©️biisal jai shree krishna 😎
+
 from os import environ
 from dotenv import load_dotenv
 
 load_dotenv()
 
-API_ID = environ.get("API_ID" , "2099007")
-API_HASH = environ.get("API_HASH" , "b1b3d7b3b1b3d7b3b1b3d7b3b1b3d7b3")
-BOT_TOKEN = environ.get("BOT_TOKEN" , "2099007:AAH1b3d7b3b1b3d7b3b1b3d7b3b1b3d7b3")
-ADMIN = int(environ.get("ADMIN" , "1847899007"))
-CHAT_GROUP = int(environ.get("CHAT_GROUP", "-100"))
-LOG_CHANNEL = environ.get("LOG_CHANNEL", "-100")
-MONGO_URL = environ.get("MONGO_URL" , "mongodb://localhost:27017")
+API_ID = environ.get("API_ID" , "")
+API_HASH = environ.get("API_HASH" , "")
+BOT_TOKEN = environ.get("BOT_TOKEN" , "")
+ADMIN = int(environ.get("ADMIN" , ""))
+CHAT_GROUP = int(environ.get("CHAT_GROUP", ""))
+LOG_CHANNEL = environ.get("LOG_CHANNEL", "")
+MONGO_URL = environ.get("MONGO_URL" , "")
 AUTH_CHANNEL = int(
-    environ.get("AUTH_CHANNEL", "-1001734958816")
+    environ.get("AUTH_CHANNEL", "")
 )
 FSUB = environ.get("FSUB", True)
 STICKERS_IDS = (
