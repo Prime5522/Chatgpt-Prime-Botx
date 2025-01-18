@@ -1,12 +1,11 @@
 from typing import List
 from pyrogram.errors import UserNotParticipant
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton , InlineKeyboardButtonBuy
-from pyrogram.types import Message
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, Message
 from pyrogram.client import Client
 from info import *
 
 
-async def get_fsub(bot : Client, message: Message ) -> bool:
+async def get_fsub(bot: Client, message: Message) -> bool:
     """
     Checks if the user is a subscriber of the channel and if not asks him to join the channel.
 
@@ -19,14 +18,28 @@ async def get_fsub(bot : Client, message: Message ) -> bool:
     """
     target_channel_id = AUTH_CHANNEL  # Your channel ID
     user_id = message.from_user.id
+
     try:
         await bot.get_chat_member(target_channel_id, user_id)
     except UserNotParticipant:
-        channel_link :str  = (await bot.get_chat(target_channel_id)).invite_link #type: ignore
-        join_button = InlineKeyboardButton("Join Channel", url=channel_link) # type:ignore
-        keyboard : List[List[InlineKeyboardButton | InlineKeyboardButtonBuy]] = [[join_button]]
-        await message.reply( # type:ignore
-            f"<b>Dᴇᴀʀ Usᴇʀ {message.from_user.mention}!\n\nPʟᴇᴀsᴇ ᴊᴏɪɴ ᴏᴜʀ ᴜᴘᴅᴀᴛᴇs ᴄʜᴀɴɴᴇʟ ᴛᴏ ᴜsᴇ ᴍᴇ ! 😊\n\nDᴜᴇ ᴛᴏ sᴇʀᴠᴇʀ ᴏᴠᴇʀʟᴏᴀᴅ, ᴏɴʟʏ ᴏᴜʀ ᴄʜᴀɴɴᴇʟ sᴜʙsᴄʀɪʙᴇʀs ᴄᴀɴ ᴜsᴇ ᴛʜɪs ʙᴏᴛ !</b>",
+        channel_link: str = (await bot.get_chat(target_channel_id)).invite_link  # type: ignore
+        join_button = InlineKeyboardButton("✇ Jᴏɪɴ Oᴜʀ Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ ✇", url=channel_link)  # type: ignore
+        try_again_button = InlineKeyboardButton(
+            "🔄 Tʀʏ Aɢᴀɪɴ ♻️", 
+            url="https://t.me/Prime_ChatGPT_ProBot?start=start"
+        )
+        
+        keyboard: List[List[InlineKeyboardButton]] = [[join_button], [try_again_button]]
+
+        await bot.send_photo(
+            chat_id=message.chat.id,
+            photo="https://envs.sh/KgA.jpg",  # Replace with your image link
+            caption=(
+                "Iғ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ ᴜꜱᴇ ᴍᴇ ғɪʀꜱᴛ ʏᴏᴜ ɴᴇᴇᴅ ᴛᴏ ᴊᴏɪɴ ᴏᴜʀ ᴜᴘᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ.\n\n"
+                "ғɪʀꜱᴛ, ᴄʟɪᴄᴋ ᴏɴ ᴛʜᴇ '✇ Jᴏɪɴ Oᴜʀ Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ ✇' ʙᴜᴛᴛᴏɴ, ᴛʜᴇɴ, "
+                "ᴄʟɪᴄᴋ ᴏɴ ᴛʜᴇ 'ʀᴇǫᴜᴇꜱᴛ ᴛᴏ Jᴏɪɴ' ʙᴜᴛᴛᴏɴ.\n\n"
+                "ᴀғᴛᴇʀ ᴛʜᴀᴛ ᴄᴏᴍᴇ ʜᴇʀᴇ ᴀɢᴀɪɴ ᴀɴᴅ 🔄 ᴄʟɪᴄᴋ ᴛᴏ Tʀʏ Aɢᴀɪɴ ♻️."
+            ),
             reply_markup=InlineKeyboardMarkup(keyboard),
         )
         return False
