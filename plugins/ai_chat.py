@@ -20,15 +20,23 @@ async def startcmd(client: Client, message: Message):
             text=f"#New_user_started\n\nUser: {message.from_user.mention()}\nid :{message.from_user.id}",
         )
     if FSUB and not await get_fsub(client, message): return
-            await message.react(emoji="🔥", big=True)
-m = await message.reply_sticker("CAACAgUAAxkBAAJ_9GcBHjuwkFd321YlOG4WOtdDCLv7AAIhFAACTiwJVPNa_9D21RH6NgQ")
+    
+    # React with emoji
+    await message.react(emoji="🔥")
+
+    # Send sticker and delete after 3 seconds
+    m = await message.reply_sticker("CAACAgUAAxkBAAJ_9GcBHjuwkFd321YlOG4WOtdDCLv7AAIhFAACTiwJVPNa_9D21RH6NgQ")
     await asyncio.sleep(3)
     await m.delete()
+
+    # Inline keyboard with buttons
     keyboard = [
         [InlineKeyboardButton("✨ ᴍᴏᴠɪᴇꜱ ᴄʜᴀɴɴᴇʟ ⚡", url="https://t.me/Prime_Movies4U"), InlineKeyboardButton("💬 ꜱᴜᴘᴘᴏʀᴛ ɢʀᴏᴜᴘ 💬", url="https://t.me/Prime_botz_Support")],
         [InlineKeyboardButton("📢 ᴜᴘᴅᴀᴛᴇꜱ ᴄʜᴀɴɴᴇʟ 📢", url="https://t.me/Prime_botz")],
         [InlineKeyboardButton("☆ 💫 𝗖𝗥𝗘𝗔𝗧𝗢𝗥 💫 ☆", url="https://t.me/Prime_Nayem")]
     ]
+
+    # Send photo with caption and inline keyboard
     await message.reply_photo(
         photo="https://envs.sh/Hpa.jpg",
         caption=f"<b>Hello Dear 👋 {userMention},\n\nIᴍ Hᴇʀᴇ Tᴏ Rᴇᴅᴜᴄᴇ Yᴏᴜʀ Pʀᴏʙʟᴇᴍs..\nYᴏᴜ Cᴀɴ Usᴇ Mᴇ As ʏᴏᴜʀ Pʀɪᴠᴀᴛᴇ Assɪsᴛᴀɴᴛ..\nAsᴋ Mᴇ Aɴʏᴛʜɪɴɢ...Dɪʀᴇᴄᴛʟʏ..\n\n<blockquote> 🌿 ᴍᴀɪɴᴛᴀɪɴᴇᴅ ʙʏ  <a href='https://t.me/Prime_Botz'>ᴘʀɪᴍᴇ ʙᴏᴛz 🔥</a></blockquote></b>",
