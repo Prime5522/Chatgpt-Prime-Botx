@@ -1,4 +1,4 @@
-# ©️biisal jai shree krishna 😎
+
 import asyncio
 import random
 from pyrogram import filters
