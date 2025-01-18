@@ -22,7 +22,7 @@ async def startcmd(client: Client, message: Message):
     if FSUB and not await get_fsub(client, message): return
     
     # React with emoji
-    await message.react(emoji="🔥")
+    await message.react(emoji="🔥", big=True)
 
     # Send sticker and delete after 3 seconds
     m = await message.reply_sticker("CAACAgUAAxkBAAJ_9GcBHjuwkFd321YlOG4WOtdDCLv7AAIhFAACTiwJVPNa_9D21RH6NgQ")
