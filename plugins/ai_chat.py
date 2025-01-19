@@ -75,18 +75,20 @@ async def broadcasting_func(client : Client, message: Message):
     await msg.edit(f"Successfully Broadcasted\nTotal : {len(users_list)} \nCompleted : {completed} \nFailed : {failed}")
     
 
-@Client.on_message(filters.command("ai") & filters.chat(CHAT_GROUP)) # type:ignore
+@Client.on_message(filters.command("ai"))  # Remove the filters.chat(CHAT_GROUP)
 async def grp_ai(client: Client, message: Message):
-    query : str | None = (
+    query: str | None = (
         message.text.split(" ", 1)[1] if len(message.text.split(" ", 1)) > 1 else None
     )
     if not query:
-        return await message.reply_text( # type:ignore
-            "<b>hey Buddy /ai type something after this !!.\n\nExample Use:\n<code>/ai Who is Allah??</code>\n\nHope you got it.Try it now..</b>"
+        return await message.reply_text(  # type:ignore
+            "<b>Hey Buddy, use /ai followed by a question or statement!\n\nExample:\n<code>/ai Who is Allah?</code>\n\nTry it now!</b>"
         )
-    if FSUB and not await get_fsub(client, message):return
-    message.text = query # type:ignore
+    if FSUB and not await get_fsub(client, message): 
+        return
+    message.text = query  # type:ignore
     return await ai_res(client, message)
+
 
 
 @Client.on_message(filters.command("reset") &  filters.private) # type:ignore
